@@ -1,1 +1,0 @@
-# mujoco_vs_genesis_collision_rendering_behaviors

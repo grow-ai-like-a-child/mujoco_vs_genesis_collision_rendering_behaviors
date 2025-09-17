@@ -1,0 +1,8 @@
+# Video and visualization dependencies
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9
+matplotlib>=3.7.0
+numpy>=1.24.0
+
+# Optional but recommended
+Pillow>=10.0.0

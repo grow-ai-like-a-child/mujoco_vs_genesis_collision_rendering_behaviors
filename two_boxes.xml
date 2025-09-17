@@ -1,0 +1,49 @@
+<mujoco model="two_boxes_collision_test">
+    <option gravity="0 0 -9.81" timestep="0.002" />
+    
+    <visual>
+        <global offwidth="1280" offheight="720"/>
+    </visual>
+
+    <worldbody>
+        <!-- Camera positioned to see both boxes clearly -->
+        <camera name="main_cam" mode="fixed" pos="0 -3 1.5" euler="80 0 0"/>
+
+        <!-- Ground plane -->
+        <geom name="floor" type="plane" pos="0 0 0" size="3 3 0.1"
+              rgba="0.7 0.7 0.7 1" contype="1" conaffinity="1" />
+
+        <!-- Box 1: LEFT SIDE - Collision DISABLED (contype=0, conaffinity=0) -->
+        <!-- This box should be visible but not collide with anything -->
+        <geom name="box_no_collision" type="box" pos="-1 0 0.5" size="0.3 0.3 0.3"
+              rgba="1 0 0 0.8" contype="0" conaffinity="0" />
+        
+        <!-- Label plane for Box 1 -->
+        <geom name="label1" type="box" pos="-1 0 0.05" size="0.5 0.1 0.01"
+              rgba="0.8 0.2 0.2 1" contype="0" conaffinity="0" />
+
+        <!-- Box 2: RIGHT SIDE - Collision ENABLED (contype=1, conaffinity=1) -->
+        <!-- This box should be visible AND collide with objects -->
+        <geom name="box_with_collision" type="box" pos="1 0 0.5" size="0.3 0.3 0.3"
+              rgba="0 0 1 0.8" contype="1" conaffinity="1" />
+        
+        <!-- Label plane for Box 2 -->
+        <geom name="label2" type="box" pos="1 0 0.05" size="0.5 0.1 0.01"
+              rgba="0.2 0.2 0.8 1" contype="0" conaffinity="0" />
+
+        <!-- Test balls to drop on both boxes -->
+        <!-- Ball 1: Will fall through the red box (no collision) -->
+        <body name="ball1" pos="-1 0 2.5">
+            <joint name="ball1_free" type="free" />
+            <geom name="ball1_geom" type="sphere" size="0.1" density="500"
+                  rgba="1 1 0 1" contype="1" conaffinity="1" />
+        </body>
+
+        <!-- Ball 2: Will land on the blue box (collision enabled) -->
+        <body name="ball2" pos="1 0 2.5">
+            <joint name="ball2_free" type="free" />
+            <geom name="ball2_geom" type="sphere" size="0.1" density="500"
+                  rgba="0 1 0 1" contype="1" conaffinity="1" />
+        </body>
+    </worldbody>
+</mujoco>
